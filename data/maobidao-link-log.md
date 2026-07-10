@@ -1,12 +1,12 @@
 # 猫笔叨的读后感区链接状态
 
-更新时间：2026-07-06
+更新时间：2026-07-10
 
 ## 已纳入完整报告
 
-数量：50 篇  
-范围：2026-01-01 至 2026-07-06  
-备注：2026-05-02 文章正文不可读，报告中只保留标题线索。
+- 数量：54 篇
+- 范围：2026-01-01 至 2026-07-10
+- 备注：2026-05-02 文章正文不可读，报告中只保留标题线索。
 
 - [x] 2026-01-01｜2025年结束了，说点心里话｜https://mp.weixin.qq.com/s/SD9I_6idAhlbl4OeLkai0g
 - [x] 2026-01-02｜其实我从小语文不好，不擅长写作｜https://mp.weixin.qq.com/s/yELeu0pN_3f2P_DtecCN2Q
@@ -58,7 +58,11 @@
 - [x] 2026-07-04｜聊聊猫哥公众号，他在自媒体上赚得多还是投资上赚得多？｜https://mp.weixin.qq.com/s/xgmahe82hT5JzNJVJPtXfQ
 - [x] 2026-07-05｜以防万一，两手准备...｜https://mp.weixin.qq.com/s/xqIgLKdmhGQ2YeQVg5VxcA
 - [x] 2026-07-06｜有点异常，别高兴太早...｜https://mp.weixin.qq.com/s/w2QlXs7Y_loPKznyMXBKgQ
+- [x] 2026-07-07｜总是那么反常，利好似乎没多大用…｜https://mp.weixin.qq.com/s/_wFy7NJyQhz7EH3-aEA3dg
+- [x] 2026-07-08｜被蛇吓到了，胆小勿入…｜https://mp.weixin.qq.com/s/YeSyN3-SNHbKu6c5i5QQpQ
+- [x] 2026-07-09｜有人吐槽猫哥老登，内容没了…｜https://mp.weixin.qq.com/s/CYyucWi32nCUXoxS5RWlOA
+- [x] 2026-07-10｜双重利好，意想不到…｜https://mp.weixin.qq.com/s/0iCWtQ8v2ygamVE_5FkHcw
 
 ## 下次处理
 
-只读取 Apple 备忘录里的新增链接，追加到本文件；再抓取正文和鱼盆图片，先更新操作看板，再更新完整报告。
+新增链接可以直接发在对话里，或先追加到本文件；再抓取正文和鱼盆图片，先更新操作看板，再更新完整报告。
