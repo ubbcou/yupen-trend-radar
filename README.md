@@ -74,6 +74,10 @@ npm run dev
 
 ## GitHub Pages 发布
 
+正式访问地址：<https://yupen.ifnet.top/>
+
 推送 `main` 分支后，`.github/workflows/deploy-pages.yml` 会自动执行项目测试、校验、快照构建和 GitHub Pages 部署。`web/dist` 与生成后的 Web 快照不提交到仓库。
 
 后续新增文章仍按“更新项目事实 -> 运行校验 -> 提交并推送 `main`”执行；校验失败时，工作流不会发布新版本。
+
+自定义域名由 GitHub Pages 设置维护；DNS 使用 `yupen` CNAME 指向 `ubbcou.github.io`，并强制 HTTPS。
