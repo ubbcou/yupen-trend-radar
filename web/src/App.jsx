@@ -155,10 +155,10 @@ export function App() {
     <main className="app-shell">
       <header className="topbar">
         <div className="brand-block">
-          <span className="brand-mark" aria-hidden="true">猫笔叨</span>
+          <span className="brand-mark" aria-hidden="true">鱼盆</span>
           <div>
-            <h1>猫笔叨鱼盆方向雷达</h1>
-            <p>趋势方向复盘 · 只读</p>
+            <h1>鱼盆趋势雷达</h1>
+            <p>独立趋势复盘 · 只读</p>
           </div>
         </div>
         <dl className="date-ledger" aria-label="数据日期">

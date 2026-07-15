@@ -15,7 +15,7 @@ page.on("console", (message) => {
 page.on("pageerror", (error) => browserErrors.push(error.message));
 await page.goto(webUrl, { waitUntil: "networkidle" });
 
-await page.getByRole("heading", { name: "猫笔叨鱼盆方向雷达" }).waitFor();
+await page.getByRole("heading", { name: "鱼盆趋势雷达" }).waitFor();
 const dateLedger = page.locator(".date-ledger");
 await dateLedger.getByText("文章", { exact: true }).waitFor();
 await dateLedger.getByText("2026-07-15", { exact: true }).waitFor();
@@ -77,7 +77,7 @@ await detail.getByText("-4.19%", { exact: true }).waitFor();
 
 const mobilePage = await browser.newPage({ viewport: { width: 390, height: 844 } });
 await mobilePage.goto(webUrl, { waitUntil: "networkidle" });
-await mobilePage.getByRole("heading", { name: "猫笔叨鱼盆方向雷达" }).waitFor();
+await mobilePage.getByRole("heading", { name: "鱼盆趋势雷达" }).waitFor();
 const hasHorizontalOverflow = await mobilePage.evaluate(
   () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
 );
@@ -113,7 +113,7 @@ await errorPage.goto(webUrl);
 await errorPage.getByText("项目快照不可用", { exact: true }).waitFor();
 await errorPage.getByText("读取失败（503）", { exact: true }).waitFor();
 await errorPage.getByRole("button", { name: "重试" }).click();
-await errorPage.getByRole("heading", { name: "猫笔叨鱼盆方向雷达" }).waitFor();
+await errorPage.getByRole("heading", { name: "鱼盆趋势雷达" }).waitFor();
 await errorContext.close();
 
 if (browserErrors.length) {
