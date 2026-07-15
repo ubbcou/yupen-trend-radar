@@ -1,11 +1,11 @@
 # 猫笔叨的读后感区链接状态
 
-更新时间：2026-07-10
+更新时间：2026-07-15
 
 ## 已纳入完整报告
 
-- 数量：54 篇
-- 范围：2026-01-01 至 2026-07-10
+- 数量：57 篇
+- 范围：2026-01-01 至 2026-07-15
 - 备注：2026-05-02 文章正文不可读，报告中只保留标题线索。
 
 - [x] 2026-01-01｜2025年结束了，说点心里话｜https://mp.weixin.qq.com/s/SD9I_6idAhlbl4OeLkai0g
@@ -62,6 +62,9 @@
 - [x] 2026-07-08｜被蛇吓到了，胆小勿入…｜https://mp.weixin.qq.com/s/YeSyN3-SNHbKu6c5i5QQpQ
 - [x] 2026-07-09｜有人吐槽猫哥老登，内容没了…｜https://mp.weixin.qq.com/s/CYyucWi32nCUXoxS5RWlOA
 - [x] 2026-07-10｜双重利好，意想不到…｜https://mp.weixin.qq.com/s/0iCWtQ8v2ygamVE_5FkHcw
+- [x] 2026-07-13｜早就说过，这个行业不能碰了…｜https://mp.weixin.qq.com/s/ZjaDCIRF-LJHlvcz9XAo6Q
+- [x] 2026-07-14｜心痛，狗东西就是狗东西…｜https://mp.weixin.qq.com/s/VkrkvP1fgxYKgRE3W90tjA
+- [x] 2026-07-15｜信心，又回来了一些…｜https://mp.weixin.qq.com/s/89FJQkBguioruBlt8uxuDA
 
 ## 下次处理
 

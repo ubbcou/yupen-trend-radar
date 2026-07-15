@@ -1,75 +1,33 @@
 import argparse
-import datetime as dt
 import hashlib
 import json
 import re
 import urllib.parse
 import urllib.request
-from html.parser import HTMLParser
 from pathlib import Path
 
 try:
-    from .fetch_maobidao_articles import UA, load_urls, meta, write_json_atomic
+    from .fetch_maobidao_articles import (
+        ContentParser,
+        UA,
+        article_date,
+        fetch_page,
+        load_urls,
+        meta,
+        write_json_atomic,
+    )
 except ImportError:
-    from fetch_maobidao_articles import UA, load_urls, meta, write_json_atomic
+    from fetch_maobidao_articles import (
+        ContentParser,
+        UA,
+        article_date,
+        fetch_page,
+        load_urls,
+        meta,
+        write_json_atomic,
+    )
 
 RECORDS_JSON = Path("data/yupen_image_records.json")
-
-
-class SequenceParser(HTMLParser):
-    def __init__(self):
-        super().__init__()
-        self.depth = 0
-        self.grab = False
-        self.skip = 0
-        self.seq = []
-
-    def handle_starttag(self, tag, attrs):
-        attrs = dict(attrs)
-        if self.grab:
-            self.depth += 1
-            if tag in {"script", "style", "svg"}:
-                self.skip += 1
-            if tag == "img" and not self.skip:
-                src = attrs.get("data-src") or attrs.get("src")
-                if src:
-                    self.seq.append({"type": "img", "src": src})
-        elif attrs.get("id") == "js_content":
-            self.grab = True
-            self.depth = 1
-
-    def handle_endtag(self, tag):
-        if not self.grab:
-            return
-        if self.skip and tag in {"script", "style", "svg"}:
-            self.skip -= 1
-        self.depth -= 1
-        if self.depth <= 0:
-            self.grab = False
-
-    def handle_data(self, data):
-        if self.grab and not self.skip:
-            line = " ".join(data.split())
-            if line:
-                self.seq.append({"type": "text", "text": line})
-
-
-def fetch_page(url):
-    req = urllib.request.Request(
-        url,
-        headers={
-            "User-Agent": UA,
-            "Accept-Encoding": "identity",
-        },
-    )
-    return urllib.request.urlopen(req, timeout=25).read().decode("utf-8", "ignore")
-
-
-def article_date(page):
-    match = re.search(r'ct\s*=\s*["\'](\d{10})["\']', page)
-    if not match:
-        return ""
-    return dt.datetime.fromtimestamp(int(match.group(1))).strftime("%Y-%m-%d")
 
 
 def normalize_image_url(src):
@@ -178,7 +136,7 @@ def extract_article_records(
     existing_records,
     out_dir=Path("data/yupen-images"),
 ):
-    parser = SequenceParser()
+    parser = ContentParser()
     parser.feed(page)
     selected = select_yupen_images(parser.seq)
     if not selected:

@@ -17,7 +17,7 @@ class DirectionResult:
     stronger_than_benchmark: bool
     continuous: bool
     volume_confirmed: bool
-    article_supported: bool
+    article_stance: str
 
 
 def evaluate_direction(
@@ -28,8 +28,10 @@ def evaluate_direction(
     benchmark_change_pct: float,
     volume_ratio: float,
     recent_ranks: list[int],
-    article_supported: bool = True,
+    article_stance: str | None = None,
 ) -> DirectionResult:
+    if article_stance not in {"support", "neutral", "oppose"}:
+        raise ValueError("article_stance must be support, neutral, or oppose")
     front = rank <= FRONT_RANK_MAX
     above_twenty_day = deviation_pct > 0
     stronger_than_benchmark = change_pct > benchmark_change_pct
@@ -41,9 +43,12 @@ def evaluate_direction(
     core_trend = front and above_twenty_day and stronger_than_benchmark
     confirmed = core_trend and continuous and volume_confirmed
 
-    if confirmed and article_supported:
+    if confirmed and article_stance == "support":
         group = "主攻"
         action = "不追高" if deviation_pct >= OVERHEAT_DEVIATION_PCT else "可关注"
+    elif core_trend and article_stance == "oppose":
+        group = "等待"
+        action = "文章冲突"
     elif confirmed:
         group = "试探"
         action = "等待文章确认"
@@ -51,7 +56,7 @@ def evaluate_direction(
         group = "试探"
         action = "等待确认"
     elif front and above_twenty_day and continuous:
-        group = "持有不追"
+        group = "趋势保持"
         action = "不新增"
     elif not above_twenty_day and not front:
         group = "回避"
@@ -59,6 +64,9 @@ def evaluate_direction(
     else:
         group = "等待"
         action = "观察"
+
+    if group in {"主攻", "试探"} and deviation_pct >= OVERHEAT_DEVIATION_PCT:
+        action = "不追高"
 
     return DirectionResult(
         group=group,
@@ -69,5 +77,5 @@ def evaluate_direction(
         stronger_than_benchmark=stronger_than_benchmark,
         continuous=continuous,
         volume_confirmed=volume_confirmed,
-        article_supported=article_supported,
+        article_stance=article_stance,
     )

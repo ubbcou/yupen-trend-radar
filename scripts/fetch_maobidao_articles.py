@@ -31,6 +31,7 @@ class ContentParser(HTMLParser):
         self.grab = False
         self.skip = 0
         self.text = []
+        self.seq = []
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -38,6 +39,10 @@ class ContentParser(HTMLParser):
             self.depth += 1
             if tag in {"script", "style", "svg"}:
                 self.skip += 1
+            if tag == "img" and not self.skip:
+                src = attrs.get("data-src") or attrs.get("src")
+                if src:
+                    self.seq.append({"type": "img", "src": src})
         elif attrs.get("id") == "js_content":
             self.grab = True
             self.depth = 1
@@ -56,6 +61,7 @@ class ContentParser(HTMLParser):
             line = " ".join(data.split())
             if line:
                 self.text.append(line)
+                self.seq.append({"type": "text", "text": line})
 
 
 def meta(page, prop):
@@ -63,7 +69,7 @@ def meta(page, prop):
     return html.unescape(match.group(1)) if match else ""
 
 
-def fetch(url):
+def fetch_page(url):
     request = urllib.request.Request(
         url,
         headers={
@@ -71,15 +77,23 @@ def fetch(url):
             "Accept-Encoding": "identity",
         },
     )
-    page = urllib.request.urlopen(request, timeout=25).read().decode("utf-8", "ignore")
+    return urllib.request.urlopen(request, timeout=25).read().decode("utf-8", "ignore")
+
+
+def article_date(page):
+    match = re.search(r'ct\s*=\s*["\'](\d{10})["\']', page)
+    if not match:
+        return ""
+    return dt.datetime.fromtimestamp(int(match.group(1))).strftime("%Y-%m-%d")
+
+
+def fetch(url):
+    page = fetch_page(url)
     parser = ContentParser()
     parser.feed(page)
-    match = re.search(r'ct\s*=\s*["\'](\d{10})["\']', page)
-    ts = int(match.group(1)) if match else 0
-    date = dt.datetime.fromtimestamp(ts).strftime("%Y-%m-%d") if ts else ""
     return {
         "url": url,
-        "date": date,
+        "date": article_date(page),
         "title": meta(page, "og:title"),
         "author": meta(page, "og:article:author"),
         "description": meta(page, "og:description"),

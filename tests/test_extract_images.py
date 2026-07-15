@@ -1,15 +1,12 @@
-import importlib
-import importlib.util
 import tempfile
 import unittest
 from pathlib import Path
 
+from scripts import extract_yupen_images as extract_images
+
 
 class ExtractImagesTest(unittest.TestCase):
     def test_different_image_urls_never_share_a_local_path(self):
-        spec = importlib.util.find_spec("scripts.extract_yupen_images")
-        self.assertIsNotNone(spec)
-        extract_images = importlib.import_module("scripts.extract_yupen_images")
         self.assertTrue(
             hasattr(extract_images, "build_image_path"),
             "build_image_path public behavior is missing",
@@ -31,7 +28,6 @@ class ExtractImagesTest(unittest.TestCase):
         self.assertNotEqual(first, second)
 
     def test_only_images_after_explicit_fish_table_phrase_are_selected(self):
-        extract_images = importlib.import_module("scripts.extract_yupen_images")
         self.assertTrue(
             hasattr(extract_images, "select_yupen_images"),
             "select_yupen_images public behavior is missing",
@@ -53,7 +49,6 @@ class ExtractImagesTest(unittest.TestCase):
         self.assertEqual(["index", "sector"], [item["kind"] for item in selected])
 
     def test_seen_record_with_missing_file_is_downloaded_again(self):
-        extract_images = importlib.import_module("scripts.extract_yupen_images")
         self.assertTrue(
             hasattr(extract_images, "record_needs_download"),
             "record_needs_download public behavior is missing",
@@ -66,7 +61,6 @@ class ExtractImagesTest(unittest.TestCase):
             self.assertFalse(extract_images.record_needs_download({"path": str(missing)}))
 
     def test_invalid_image_registry_stops_instead_of_rebuilding_silently(self):
-        extract_images = importlib.import_module("scripts.extract_yupen_images")
         with tempfile.TemporaryDirectory() as directory:
             registry = Path(directory) / "records.json"
             registry.write_text("[broken", encoding="utf-8")
@@ -75,7 +69,6 @@ class ExtractImagesTest(unittest.TestCase):
                 extract_images.load_existing_records(registry)
 
     def test_article_without_fish_table_is_a_successful_noop(self):
-        extract_images = importlib.import_module("scripts.extract_yupen_images")
         self.assertTrue(
             hasattr(extract_images, "extract_article_records"),
             "extract_article_records public behavior is missing",
@@ -93,7 +86,6 @@ class ExtractImagesTest(unittest.TestCase):
         self.assertEqual("no_table", status)
 
     def test_fish_table_records_include_type_date_and_unique_source_path(self):
-        extract_images = importlib.import_module("scripts.extract_yupen_images")
         page = """
             <meta property="og:title" content="鱼盆文章">
             <script>var ct = '1783612800';</script>
@@ -120,7 +112,6 @@ class ExtractImagesTest(unittest.TestCase):
         self.assertIn("data_date", records[0])
 
     def test_non_image_response_is_rejected_before_it_enters_the_registry(self):
-        extract_images = importlib.import_module("scripts.extract_yupen_images")
         self.assertTrue(
             hasattr(extract_images, "write_image_atomic"),
             "write_image_atomic public behavior is missing",
@@ -134,7 +125,6 @@ class ExtractImagesTest(unittest.TestCase):
             self.assertFalse(output.exists())
 
     def test_registry_update_accepts_article_without_fish_table(self):
-        extract_images = importlib.import_module("scripts.extract_yupen_images")
         self.assertTrue(
             hasattr(extract_images, "update_image_records"),
             "update_image_records public behavior is missing",

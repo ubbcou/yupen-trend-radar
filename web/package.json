@@ -1,0 +1,25 @@
+{
+  "name": "maobidao-yupen-web-starter",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "snapshot": "python3 ../scripts/build_web_snapshot.py",
+    "predev": "npm run snapshot",
+    "dev": "vite --host 127.0.0.1",
+    "prebuild": "npm run snapshot",
+    "build": "vite build",
+    "capture": "node scripts/capture-screenshots.mjs",
+    "smoke": "node scripts/smoke-check.mjs",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "5.0.4",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "vite": "6.4.2"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.61.1"
+  }
+}
