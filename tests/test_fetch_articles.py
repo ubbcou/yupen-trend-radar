@@ -29,6 +29,24 @@ class FetchArticlesTest(unittest.TestCase):
 
         self.assertEqual(cached["text"], selected["text"])
 
+    def test_redirected_article_never_replaces_known_cache_entry(self):
+        cached = {
+            "url": "https://mp.weixin.qq.com/s/old",
+            "date": "2026-05-02",
+            "title": "历史文章",
+            "text": "",
+        }
+        fetched = {
+            "url": cached["url"],
+            "date": "2026-07-16",
+            "title": "其他文章",
+            "text": "错误正文" * 100,
+        }
+
+        selected = fetch_maobidao_articles.choose_article_version(cached, fetched)
+
+        self.assertIs(cached, selected)
+
     def test_invalid_cache_stops_instead_of_replacing_history(self):
         with tempfile.TemporaryDirectory() as directory:
             cache = Path(directory) / "articles.json"

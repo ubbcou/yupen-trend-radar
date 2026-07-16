@@ -108,6 +108,8 @@ def useful(row):
 def choose_article_version(cached, fetched):
     if not cached:
         return fetched
+    if cached.get("date") and fetched.get("date") != cached["date"]:
+        return cached
     if len((fetched.get("text") or "").strip()) < len((cached.get("text") or "").strip()):
         return cached
     return fetched

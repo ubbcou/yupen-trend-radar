@@ -304,6 +304,31 @@ class ValidateProjectTest(unittest.TestCase):
         self.assertTrue(any("article URL mismatch" in error for error in errors))
         self.assertTrue(any("duplicate article URL" in error for error in errors))
 
+    def test_article_cache_metadata_must_match_link_registry(self):
+        link_log = (
+            "- [x] 2026-05-02｜历史文章...｜"
+            "https://mp.weixin.qq.com/s/history"
+        )
+        articles = [
+            {
+                "url": "https://mp.weixin.qq.com/s/history",
+                "date": "2026-07-16",
+                "title": "其他文章…",
+            }
+        ]
+
+        errors = validator.validate_article_metadata(link_log, articles)
+
+        self.assertTrue(any("article date mismatch" in error for error in errors))
+        self.assertTrue(any("article title mismatch" in error for error in errors))
+
+    def test_article_cache_indices_must_follow_file_order(self):
+        articles = [{"url": "b", "index": 2}, {"url": "a", "index": 1}]
+
+        errors = validator.validate_articles(["a", "b"], articles)
+
+        self.assertTrue(any("indices are not consecutive" in error for error in errors))
+
     def test_reading_report_metadata_must_match_article_cache(self):
         if not hasattr(validator, "validate_reading_report"):
             self.fail("reading report validation is missing")

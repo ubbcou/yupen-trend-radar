@@ -261,9 +261,34 @@ def validate_articles(urls, articles):
         errors.append("duplicate article URL in link registry")
     if set(urls) != set(article_urls):
         errors.append("article URL mismatch between registry and cache")
-    indices = sorted(row.get("index") for row in articles if isinstance(row.get("index"), int))
+    indices = [row.get("index") for row in articles if isinstance(row.get("index"), int)]
     if indices != list(range(1, len(articles) + 1)):
         errors.append("article indices are not consecutive")
+    return errors
+
+
+def validate_article_metadata(link_log, articles):
+    errors = []
+    articles_by_url = {row.get("url", ""): row for row in articles}
+    entries = re.findall(
+        r"^- \[[ x]\] (\d{4}-\d{2}-\d{2})｜(.+?)｜"
+        r"(https://mp\.weixin\.qq\.com/s/[A-Za-z0-9_-]+)$",
+        link_log,
+        re.MULTILINE,
+    )
+    def normalize_title(title):
+        return re.sub(r"\.{3,}", "…", title.strip())
+
+    for date, title, url in entries:
+        article = articles_by_url.get(url)
+        if not article:
+            continue
+        if article.get("date", "") != date:
+            errors.append(
+                f"article date mismatch: {url} registry={date} cache={article.get('date', '')}"
+            )
+        if normalize_title(article.get("title", "")) != normalize_title(title):
+            errors.append(f"article title mismatch: {url}")
     return errors
 
 
@@ -347,9 +372,11 @@ def main(argv=None):
     }
     action_board = (PROJECT_ROOT / "docs/action-board.md").read_text(encoding="utf-8")
     reading_report = (PROJECT_ROOT / "docs/reading-report.md").read_text(encoding="utf-8")
+    link_log = (data_dir / "maobidao-link-log.md").read_text(encoding="utf-8")
 
     errors = []
     errors.extend(validate_articles(load_urls(data_dir / "maobidao-link-log.md"), articles))
+    errors.extend(validate_article_metadata(link_log, articles))
     errors.extend(validate_reading_report(reading_report, articles, ranking_rows))
     errors.extend(validate_image_records(records))
     errors.extend(validate_rankings(ranking_rows))
