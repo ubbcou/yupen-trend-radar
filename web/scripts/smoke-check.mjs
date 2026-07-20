@@ -18,14 +18,14 @@ await page.goto(webUrl, { waitUntil: "networkidle" });
 await page.getByRole("heading", { name: "鱼盆趋势雷达" }).waitFor();
 const dateLedger = page.locator(".date-ledger");
 await dateLedger.getByText("文章", { exact: true }).waitFor();
-await dateLedger.getByText("2026-07-16", { exact: true }).waitFor();
+await dateLedger.getByText("2026-07-20", { exact: true }).waitFor();
 await dateLedger.getByText("指数", { exact: true }).waitFor();
 await dateLedger.getByText("板块", { exact: true }).waitFor();
-if ((await dateLedger.getByText("2026-07-15", { exact: true }).count()) !== 2) {
+if ((await dateLedger.getByText("2026-07-17", { exact: true }).count()) !== 2) {
   throw new Error("Index and sector data dates should both be visible");
 }
-await page.getByText(/从科技成长向创新药、煤炭和消费切换/).waitFor();
-await page.getByRole("heading", { name: "2 个主攻方向" }).waitFor();
+await page.getByText(/A股宽基全部跌破20日线/).waitFor();
+await page.getByRole("heading", { name: "当前无主攻方向" }).waitFor();
 await page.getByRole("heading", { name: "趋势方向雷达" }).waitFor();
 if ((await page.locator("[data-testid='focus-groups'] .radar-group").count()) !== 4) {
   throw new Error("Actionable states should stay in the four-column focus area");
@@ -49,19 +49,20 @@ if (avoidOverflow === "auto" || avoidOverflow === "scroll") {
 await page.getByRole("button", { name: /CS创新药/ }).click();
 const detail = page.locator("[data-testid='direction-detail']");
 await detail.getByRole("heading", { name: "CS创新药" }).waitFor();
-await detail.locator(".group-label").getByText("主攻", { exact: true }).waitFor();
-await detail.locator(".group-label").getByText("不追高", { exact: true }).waitFor();
-await detail.locator(".metric-strip").getByText("第 1 名", { exact: true }).waitFor();
-await detail.getByText("较 2026-07-14 持平", { exact: true }).waitFor();
-await detail.getByText("量比 1.64", { exact: true }).waitFor();
+await detail.locator(".group-label").getByText("趋势保持", { exact: true }).waitFor();
+await detail.locator(".group-label").getByText("不新增", { exact: true }).waitFor();
+await detail.locator(".metric-strip").getByText("第 2 名", { exact: true }).waitFor();
+await detail.getByText("较 2026-07-15 下降 1 名", { exact: true }).waitFor();
+await detail.getByText("量比 1.01", { exact: true }).waitFor();
 await detail.getByText("中证A500", { exact: true }).waitFor();
-await detail.getByText(/偏离率降温/).waitFor();
+await detail.getByText(/重新强于A500/).waitFor();
 const history = detail.locator("[data-testid='direction-history']");
 await history.getByRole("heading", { name: "最近 5 次状态" }).waitFor();
-await history.getByText("2026-07-09", { exact: true }).waitFor();
-await history.getByText("趋势保持", { exact: true }).first().waitFor();
-await history.getByText("2026-07-15", { exact: true }).waitFor();
+await history.getByText("2026-07-10", { exact: true }).waitFor();
 await history.getByText("主攻", { exact: true }).first().waitFor();
+await history.getByText("2026-07-15", { exact: true }).waitFor();
+await history.getByText("2026-07-17", { exact: true }).waitFor();
+await history.getByText("趋势保持", { exact: true }).first().waitFor();
 const evidenceImage = detail.getByRole("img", { name: /板块鱼盆原始表格/ });
 await evidenceImage.waitFor();
 if ((await evidenceImage.evaluate((image) => image.naturalWidth)) === 0) {
@@ -71,9 +72,9 @@ if ((await evidenceImage.evaluate((image) => image.naturalWidth)) === 0) {
 await page.getByRole("button", { name: /半导体/ }).click();
 await detail.getByRole("heading", { name: "半导体" }).waitFor();
 await detail.locator(".group-label").getByText("回避", { exact: true }).waitFor();
-await detail.locator(".metric-strip").getByText("第 12 名", { exact: true }).waitFor();
-await detail.getByText("较 2026-07-14 下降 5 名", { exact: true }).waitFor();
-await detail.getByText("-9.65%", { exact: true }).waitFor();
+await detail.locator(".metric-strip").getByText("第 14 名", { exact: true }).waitFor();
+await detail.getByText("较 2026-07-15 下降 2 名", { exact: true }).waitFor();
+await detail.getByText("-21.94%", { exact: true }).waitFor();
 
 const mobilePage = await browser.newPage({ viewport: { width: 390, height: 844 } });
 await mobilePage.goto(webUrl, { waitUntil: "networkidle" });
