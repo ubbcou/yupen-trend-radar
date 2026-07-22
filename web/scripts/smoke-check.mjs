@@ -18,14 +18,14 @@ await page.goto(webUrl, { waitUntil: "networkidle" });
 await page.getByRole("heading", { name: "鱼盆趋势雷达" }).waitFor();
 const dateLedger = page.locator(".date-ledger");
 await dateLedger.getByText("文章", { exact: true }).waitFor();
-await dateLedger.getByText("2026-07-21", { exact: true }).waitFor();
+await dateLedger.getByText("2026-07-22", { exact: true }).waitFor();
 await dateLedger.getByText("指数", { exact: true }).waitFor();
 await dateLedger.getByText("板块", { exact: true }).waitFor();
-if ((await dateLedger.getByText("2026-07-20", { exact: true }).count()) !== 2) {
+if ((await dateLedger.getByText("2026-07-21", { exact: true }).count()) !== 2) {
   throw new Error("Index and sector data dates should both be visible");
 }
-await page.getByText(/主攻恢复为中证消费/).waitFor();
-await page.getByRole("heading", { name: "1 个主攻方向" }).waitFor();
+await page.getByRole("heading", { name: "当前无主攻方向" }).waitFor();
+await page.getByRole("heading", { name: "0 个主攻方向" }).waitFor();
 await page.getByRole("heading", { name: "趋势方向雷达" }).waitFor();
 if ((await page.locator("[data-testid='focus-groups'] .radar-group").count()) !== 4) {
   throw new Error("Actionable states should stay in the four-column focus area");
@@ -49,19 +49,19 @@ if (avoidOverflow === "auto" || avoidOverflow === "scroll") {
 await page.getByRole("button", { name: /中证消费/ }).click();
 const detail = page.locator("[data-testid='direction-detail']");
 await detail.getByRole("heading", { name: "中证消费" }).waitFor();
-await detail.locator(".group-label").getByText("主攻", { exact: true }).waitFor();
-await detail.locator(".group-label").getByText("可关注", { exact: true }).waitFor();
+await detail.locator(".group-label").getByText("趋势保持", { exact: true }).waitFor();
+await detail.locator(".group-label").getByText("不新增", { exact: true }).waitFor();
 await detail.locator(".metric-strip").getByText("第 1 名", { exact: true }).waitFor();
-await detail.getByText("较 2026-07-17 持平", { exact: true }).waitFor();
-await detail.getByText("量比 1.26", { exact: true }).waitFor();
+await detail.getByText("较 2026-07-20 持平", { exact: true }).waitFor();
+await detail.getByText("量比 1.17", { exact: true }).waitFor();
 await detail.getByText("中证A500", { exact: true }).waitFor();
-await detail.getByText(/偏离率若升至8%以上则不追高/).waitFor();
+await detail.getByText(/继续前三并重新强于A500/).waitFor();
 const history = detail.locator("[data-testid='direction-history']");
 await history.getByRole("heading", { name: "最近 5 次状态" }).waitFor();
-await history.getByText("2026-07-13", { exact: true }).waitFor();
 await history.getByText("2026-07-15", { exact: true }).waitFor();
 await history.getByText("2026-07-17", { exact: true }).waitFor();
 await history.getByText("2026-07-20", { exact: true }).waitFor();
+await history.getByText("2026-07-21", { exact: true }).waitFor();
 await history.getByText("主攻", { exact: true }).first().waitFor();
 const evidenceImage = detail.getByRole("img", { name: /板块鱼盆原始表格/ });
 await evidenceImage.waitFor();
@@ -73,8 +73,8 @@ await page.getByRole("button", { name: /半导体/ }).click();
 await detail.getByRole("heading", { name: "半导体" }).waitFor();
 await detail.locator(".group-label").getByText("回避", { exact: true }).waitFor();
 await detail.locator(".metric-strip").getByText("第 14 名", { exact: true }).waitFor();
-await detail.getByText("较 2026-07-17 持平", { exact: true }).waitFor();
-await detail.getByText("-26.05%", { exact: true }).waitFor();
+await detail.getByText("较 2026-07-20 持平", { exact: true }).waitFor();
+await detail.getByText("-18.09%", { exact: true }).waitFor();
 
 const mobilePage = await browser.newPage({ viewport: { width: 390, height: 844 } });
 await mobilePage.goto(webUrl, { waitUntil: "networkidle" });

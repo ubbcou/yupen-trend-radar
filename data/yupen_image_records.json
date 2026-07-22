@@ -766,5 +766,29 @@
     "path": "data/yupen-images/2026-07-21_db85fa4e_sector_27f84b3f.jpg",
     "context": "贴下最新鱼盆模型回测数据，我们数据说话：",
     "verified": true
+  },
+  {
+    "article_index": 61,
+    "article_date": "2026-07-22",
+    "data_date": "2026-07-21",
+    "title": "大盘一涨，各种利好都爆出来了…",
+    "article_url": "https://mp.weixin.qq.com/s/ubAfG59Idt2SUGBipOHCIA",
+    "image_url": "https://mmbiz.qpic.cn/mmbiz_jpg/bLbhDNngqpJRSMxdaYg0UEa5vNYnibvDtVaiadYnWYWLxeQ2JIU5abpvqRjw9CwGZNbiazhMal77guNbaZIACxyEEdiaeKCKibjUb2aCmjxxC0AE/640?wx_fmt=jpeg",
+    "kind": "index",
+    "path": "data/yupen-images/2026-07-22_c2b97816_index_b0088386.jpg",
+    "context": "贴下最新鱼盆模型回测数据，我们数据说话：",
+    "verified": true
+  },
+  {
+    "article_index": 61,
+    "article_date": "2026-07-22",
+    "data_date": "2026-07-21",
+    "title": "大盘一涨，各种利好都爆出来了…",
+    "article_url": "https://mp.weixin.qq.com/s/ubAfG59Idt2SUGBipOHCIA",
+    "image_url": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/bLbhDNngqpIjEYKHhrgpo2gGblq8WrUP6n2RkZspHZWZvRcEoHu8mI71CcuPbdr61S481AySZfUjJcKEMSBtdJIfyibEZQjUvS1EIic3KrNzQ/640?wx_fmt=jpeg",
+    "kind": "sector",
+    "path": "data/yupen-images/2026-07-22_c2b97816_sector_69611b1c.jpg",
+    "context": "贴下最新鱼盆模型回测数据，我们数据说话：",
+    "verified": true
   }
 ]
