@@ -790,5 +790,29 @@
     "path": "data/yupen-images/2026-07-22_c2b97816_sector_69611b1c.jpg",
     "context": "贴下最新鱼盆模型回测数据，我们数据说话：",
     "verified": true
+  },
+  {
+    "article_index": 62,
+    "article_date": "2026-07-23",
+    "data_date": "2026-07-22",
+    "title": "大佬单月亏了5亿多，看了总结写得真好…",
+    "article_url": "https://mp.weixin.qq.com/s/lySRFMIw9NefXEeoZhuZtQ",
+    "image_url": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/bLbhDNngqpLUIkrClR5EHqjxztqAxjRNxVuwY3n7HeP671LEBXPBicorfNa2QVSqg6ibeVB93AwEnvdGyJgvDPPNVarUwicD2MqOrFdaPqkZR4/640?wx_fmt=jpeg",
+    "kind": "index",
+    "path": "data/yupen-images/2026-07-23_97c6b719_index_733ba81b.jpg",
+    "context": "贴下最新鱼盆模型回测数据，我们数据说话：",
+    "verified": true
+  },
+  {
+    "article_index": 62,
+    "article_date": "2026-07-23",
+    "data_date": "2026-07-22",
+    "title": "大佬单月亏了5亿多，看了总结写得真好…",
+    "article_url": "https://mp.weixin.qq.com/s/lySRFMIw9NefXEeoZhuZtQ",
+    "image_url": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/bLbhDNngqpIQ0OGM4xYJn0y7fej2aZ792QsdI1Rlz02RPnxuP5rBk8rP5guTcnkWPpRgZPKjUMCfkYp8gNtcDicKdaIf12icD4pXysUDfyiaDc/640?wx_fmt=jpeg",
+    "kind": "sector",
+    "path": "data/yupen-images/2026-07-23_97c6b719_sector_8dc1f784.jpg",
+    "context": "贴下最新鱼盆模型回测数据，我们数据说话：",
+    "verified": true
   }
 ]
