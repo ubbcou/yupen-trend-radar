@@ -18,10 +18,10 @@ await page.goto(webUrl, { waitUntil: "networkidle" });
 await page.getByRole("heading", { name: "鱼盆趋势雷达" }).waitFor();
 const dateLedger = page.locator(".date-ledger");
 await dateLedger.getByText("文章", { exact: true }).waitFor();
-await dateLedger.getByText("2026-07-23", { exact: true }).waitFor();
+await dateLedger.getByText("2026-07-24", { exact: true }).waitFor();
 await dateLedger.getByText("指数", { exact: true }).waitFor();
 await dateLedger.getByText("板块", { exact: true }).waitFor();
-if ((await dateLedger.getByText("2026-07-22", { exact: true }).count()) !== 2) {
+if ((await dateLedger.getByText("2026-07-23", { exact: true }).count()) !== 2) {
   throw new Error("Index and sector data dates should both be visible");
 }
 await page.getByRole("heading", { name: "当前无主攻方向" }).waitFor();
@@ -48,20 +48,20 @@ if (avoidOverflow === "auto" || avoidOverflow === "scroll") {
 await page.getByRole("button", { name: /中证消费/ }).click();
 const detail = page.locator("[data-testid='direction-detail']");
 await detail.getByRole("heading", { name: "中证消费" }).waitFor();
-await detail.locator(".group-label").getByText("试探", { exact: true }).waitFor();
-await detail.locator(".group-label").getByText("等待确认", { exact: true }).waitFor();
-await detail.locator(".metric-strip").getByText("第 2 名", { exact: true }).waitFor();
-await detail.getByText("较 2026-07-21 下降 1 名", { exact: true }).waitFor();
-await detail.getByText("量比 0.82", { exact: true }).waitFor();
+await detail.locator(".group-label").getByText("趋势保持", { exact: true }).waitFor();
+await detail.locator(".group-label").getByText("不新增", { exact: true }).waitFor();
+await detail.locator(".metric-strip").getByText("第 3 名", { exact: true }).waitFor();
+await detail.getByText("较 2026-07-22 下降 1 名", { exact: true }).waitFor();
+await detail.getByText("量比 0.69", { exact: true }).waitFor();
 await detail.getByText("中证A500", { exact: true }).waitFor();
-await detail.getByText(/量比能否回到1以上/).waitFor();
+await detail.getByText(/恢复强于A500和量比1以上/).waitFor();
 const history = detail.locator("[data-testid='direction-history']");
 await history.getByRole("heading", { name: "最近 5 次状态" }).waitFor();
-await history.getByText("2026-07-15", { exact: true }).waitFor();
 await history.getByText("2026-07-17", { exact: true }).waitFor();
 await history.getByText("2026-07-20", { exact: true }).waitFor();
 await history.getByText("2026-07-21", { exact: true }).waitFor();
 await history.getByText("2026-07-22", { exact: true }).waitFor();
+await history.getByText("2026-07-23", { exact: true }).waitFor();
 await history.getByText("主攻", { exact: true }).first().waitFor();
 const evidenceImage = detail.getByRole("img", { name: /板块鱼盆原始表格/ });
 await evidenceImage.waitFor();
@@ -73,8 +73,8 @@ await page.getByRole("button", { name: /半导体/ }).click();
 await detail.getByRole("heading", { name: "半导体" }).waitFor();
 await detail.locator(".group-label").getByText("回避", { exact: true }).waitFor();
 await detail.locator(".metric-strip").getByText("第 14 名", { exact: true }).waitFor();
-await detail.getByText("较 2026-07-21 持平", { exact: true }).waitFor();
-await detail.getByText("-17.94%", { exact: true }).waitFor();
+await detail.getByText("较 2026-07-22 持平", { exact: true }).waitFor();
+await detail.getByText("-19.52%", { exact: true }).waitFor();
 
 const mobilePage = await browser.newPage({ viewport: { width: 390, height: 844 } });
 await mobilePage.goto(webUrl, { waitUntil: "networkidle" });
