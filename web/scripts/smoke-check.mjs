@@ -18,7 +18,7 @@ await page.goto(webUrl, { waitUntil: "networkidle" });
 await page.getByRole("heading", { name: "鱼盆趋势雷达" }).waitFor();
 const dateLedger = page.locator(".date-ledger");
 await dateLedger.getByText("文章", { exact: true }).waitFor();
-await dateLedger.getByText("2026-07-24", { exact: true }).waitFor();
+await dateLedger.getByText("2026-07-26", { exact: true }).waitFor();
 await dateLedger.getByText("指数", { exact: true }).waitFor();
 await dateLedger.getByText("板块", { exact: true }).waitFor();
 if ((await dateLedger.getByText("2026-07-23", { exact: true }).count()) !== 2) {

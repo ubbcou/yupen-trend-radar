@@ -10,7 +10,7 @@ class WebSnapshotTest(unittest.TestCase):
     def test_snapshot_uses_current_project_facts(self):
         snapshot = build_snapshot()
 
-        self.assertEqual("2026-07-24", snapshot["meta"]["article"]["date"])
+        self.assertEqual("2026-07-26", snapshot["meta"]["article"]["date"])
         self.assertEqual("2026-07-23", snapshot["meta"]["fishDataDates"]["index"])
         self.assertEqual("2026-07-23", snapshot["meta"]["fishDataDates"]["sector"])
 
