@@ -838,5 +838,29 @@
     "path": "data/yupen-images/2026-07-24_3dd559d3_sector_a016d5a1.jpg",
     "context": "贴下最新鱼盆模型回测数据，我们数据说话：",
     "verified": true
+  },
+  {
+    "article_index": 65,
+    "article_date": "2026-07-27",
+    "data_date": "2026-07-24",
+    "title": "内容删除了三分之一，猜猜都删除了啥…",
+    "article_url": "https://mp.weixin.qq.com/s/khYN7fYr-tPhBImJ3FcgHg",
+    "image_url": "https://mmbiz.qpic.cn/mmbiz_jpg/bLbhDNngqpJAtujtx9nGCK3ibS4qHbBEMIIBtDmTz8iaUQQvgIXDEklmCDLPcl3S5YLC3YabyzicD5fJ5hiaONbqs6JPOtZrbz3w6h4j4qXNLQk/640?wx_fmt=jpeg",
+    "kind": "index",
+    "path": "data/yupen-images/2026-07-27_d2662b5e_index_b65109f3.jpg",
+    "context": "5 贴下最新鱼盆模型回测数据，我们数据说话：",
+    "verified": true
+  },
+  {
+    "article_index": 65,
+    "article_date": "2026-07-27",
+    "data_date": "2026-07-24",
+    "title": "内容删除了三分之一，猜猜都删除了啥…",
+    "article_url": "https://mp.weixin.qq.com/s/khYN7fYr-tPhBImJ3FcgHg",
+    "image_url": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/bLbhDNngqpLCicz8ttGg7XmWpbHxS7aCEMN30GhMlsIDc7ZwKjDJjLoOvkwAWQRvId5Z4lPdPyFuVmf71lEcOqLnssa7WJef3dLSMsqsSXFs/640?wx_fmt=jpeg",
+    "kind": "sector",
+    "path": "data/yupen-images/2026-07-27_d2662b5e_sector_7bcb9645.jpg",
+    "context": "5 贴下最新鱼盆模型回测数据，我们数据说话：",
+    "verified": true
   }
 ]
