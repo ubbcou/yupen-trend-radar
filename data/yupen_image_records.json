@@ -862,5 +862,29 @@
     "path": "data/yupen-images/2026-07-27_d2662b5e_sector_7bcb9645.jpg",
     "context": "5 贴下最新鱼盆模型回测数据，我们数据说话：",
     "verified": true
+  },
+  {
+    "article_index": 66,
+    "article_date": "2026-07-28",
+    "data_date": "2026-07-27",
+    "title": "有点幸运，抄到底了…",
+    "article_url": "https://mp.weixin.qq.com/s/VFAa2DtH8dRMJ-NQowqxnA",
+    "image_url": "https://mmbiz.qpic.cn/mmbiz_jpg/bLbhDNngqpJF5K1QSjSldSN7oqdPFuiaZnqauAqvZU9ibxDuF1Bic750PBsZzAWgB5J8XbicibiaYOiaY2DwAtGiazFgzAWz2GLxYFYh0h0W1bJ66ia4/640?wx_fmt=jpeg",
+    "kind": "index",
+    "path": "data/yupen-images/2026-07-28_c10aaf4b_index_a276b18b.jpg",
+    "context": "贴下最新鱼盆模型回测数据，我们数据说话：",
+    "verified": true
+  },
+  {
+    "article_index": 66,
+    "article_date": "2026-07-28",
+    "data_date": "2026-07-27",
+    "title": "有点幸运，抄到底了…",
+    "article_url": "https://mp.weixin.qq.com/s/VFAa2DtH8dRMJ-NQowqxnA",
+    "image_url": "https://mmbiz.qpic.cn/mmbiz_jpg/bLbhDNngqpKWVoiabxgokaqVJmjdp7jeTnns3Xibic9amK9N5ezrprPfXY1Q7J2LIXYnD4bdWB52FZSibBGB35IUwq39NiclE1onOgHdXANW09Ew/640?wx_fmt=jpeg",
+    "kind": "sector",
+    "path": "data/yupen-images/2026-07-28_c10aaf4b_sector_08622953.jpg",
+    "context": "贴下最新鱼盆模型回测数据，我们数据说话：",
+    "verified": true
   }
 ]
