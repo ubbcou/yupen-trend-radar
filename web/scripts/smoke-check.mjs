@@ -65,6 +65,7 @@ await history.getByText("2026-07-27", { exact: true }).waitFor();
 await history.getByText("趋势保持", { exact: true }).first().waitFor();
 const evidenceImage = detail.getByRole("img", { name: /板块鱼盆原始表格/ });
 await evidenceImage.waitFor();
+await evidenceImage.evaluate((image) => image.decode());
 if ((await evidenceImage.evaluate((image) => image.naturalWidth)) === 0) {
   throw new Error("Fish-table evidence image should load");
 }
