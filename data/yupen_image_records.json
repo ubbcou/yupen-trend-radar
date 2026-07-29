@@ -886,5 +886,29 @@
     "path": "data/yupen-images/2026-07-28_c10aaf4b_sector_08622953.jpg",
     "context": "贴下最新鱼盆模型回测数据，我们数据说话：",
     "verified": true
+  },
+  {
+    "article_index": 67,
+    "article_date": "2026-07-29",
+    "data_date": "2026-07-28",
+    "title": "有点惨，投了170万亏了166万…",
+    "article_url": "https://mp.weixin.qq.com/s/-b8Qwf4H2Vv9oQSf30xTuA",
+    "image_url": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/bLbhDNngqpK9rSZrib1oTUPoicytQ4h90VBmfrvPh08tfcic21zNYDaoEpibvSQibia9q7icWY2j6VFDpClYEOoEndwIf6ZT69NTqicSAFLDTVNTEpI/640?wx_fmt=jpeg",
+    "kind": "index",
+    "path": "data/yupen-images/2026-07-29_54fa6582_index_a61e8591.jpg",
+    "context": "贴下最新鱼盆模型回测数据，我们数据说话：",
+    "verified": true
+  },
+  {
+    "article_index": 67,
+    "article_date": "2026-07-29",
+    "data_date": "2026-07-28",
+    "title": "有点惨，投了170万亏了166万…",
+    "article_url": "https://mp.weixin.qq.com/s/-b8Qwf4H2Vv9oQSf30xTuA",
+    "image_url": "https://mmbiz.qpic.cn/mmbiz_jpg/bLbhDNngqpLfouuIqcmMicqkUKwV0tgYCdeibNkicEBKWAPmsKPupogqBiaqJQsIwJ0icm0E6E7qowNgSyW7pOnfhG7eMeaZZU2k6tT80RPFxw6Y/640?wx_fmt=jpeg",
+    "kind": "sector",
+    "path": "data/yupen-images/2026-07-29_54fa6582_sector_d010ac16.jpg",
+    "context": "贴下最新鱼盆模型回测数据，我们数据说话：",
+    "verified": true
   }
 ]
