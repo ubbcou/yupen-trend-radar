@@ -910,5 +910,29 @@
     "path": "data/yupen-images/2026-07-29_54fa6582_sector_d010ac16.jpg",
     "context": "贴下最新鱼盆模型回测数据，我们数据说话：",
     "verified": true
+  },
+  {
+    "article_index": 68,
+    "article_date": "2026-07-30",
+    "data_date": "2026-07-29",
+    "title": "在人大叫嚣的张某某，估计现在后悔了吧…",
+    "article_url": "https://mp.weixin.qq.com/s/n09-xTOXcK6eqLDNMb4Kow",
+    "image_url": "https://mmbiz.qpic.cn/mmbiz_jpg/bLbhDNngqpLhTicuib4dsajuPDNmQkQsJAkjnibJAzdpH1bpLiaGFWMD8y0lZ4rG0RJLIrxzicEIMkgV2msDicLmFOIxmnMuAuib3fbkFDx5KAU8ts/640?wx_fmt=jpeg",
+    "kind": "index",
+    "path": "data/yupen-images/2026-07-30_ada24988_index_567abfa9.jpg",
+    "context": "贴下最新鱼盆模型回测数据，我们数据说话：",
+    "verified": true
+  },
+  {
+    "article_index": 68,
+    "article_date": "2026-07-30",
+    "data_date": "2026-07-29",
+    "title": "在人大叫嚣的张某某，估计现在后悔了吧…",
+    "article_url": "https://mp.weixin.qq.com/s/n09-xTOXcK6eqLDNMb4Kow",
+    "image_url": "https://mmbiz.qpic.cn/mmbiz_jpg/bLbhDNngqpKu6ouaibxSzd1WZYsyN6yRcnw5QWeoRCZzKIkOJswyU7sLIfW2k7iczrFLvBgy4YicZREXfLTzWRODBRtVKlJibDUUerJibQE2oAxU/640?wx_fmt=jpeg",
+    "kind": "sector",
+    "path": "data/yupen-images/2026-07-30_ada24988_sector_4f7e7c04.jpg",
+    "context": "贴下最新鱼盆模型回测数据，我们数据说话：",
+    "verified": true
   }
 ]
