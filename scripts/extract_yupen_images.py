@@ -2,7 +2,9 @@ import argparse
 import hashlib
 import json
 import re
+import subprocess
 import urllib.parse
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -111,7 +113,29 @@ def download(url, path):
             "Referer": "https://mp.weixin.qq.com/",
         },
     )
-    write_image_atomic(path, urllib.request.urlopen(req, timeout=30).read())
+    try:
+        content = urllib.request.urlopen(req, timeout=30).read()
+    except urllib.error.URLError:
+        result = subprocess.run(
+            [
+                "curl",
+                "--fail",
+                "--location",
+                "--silent",
+                "--show-error",
+                "--max-time",
+                "30",
+                "--user-agent",
+                UA,
+                "--referer",
+                "https://mp.weixin.qq.com/",
+                url,
+            ],
+            check=True,
+            stdout=subprocess.PIPE,
+        )
+        content = result.stdout
+    write_image_atomic(path, content)
 
 
 def record_needs_download(record):

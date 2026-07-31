@@ -1,11 +1,34 @@
+import subprocess
 import tempfile
 import unittest
+import urllib.error
 from pathlib import Path
+from unittest.mock import patch
 
 from scripts import extract_yupen_images as extract_images
 
 
 class ExtractImagesTest(unittest.TestCase):
+    def test_download_uses_verified_curl_fallback_after_url_error(self):
+        image = b"\xff\xd8\xff" + b"image"
+        completed = subprocess.CompletedProcess([], 0, stdout=image)
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "table.jpg"
+            with patch(
+                "scripts.extract_yupen_images.urllib.request.urlopen",
+                side_effect=urllib.error.URLError("certificate failure"),
+            ), patch(
+                "scripts.extract_yupen_images.subprocess.run",
+                return_value=completed,
+            ) as run:
+                extract_images.download("https://example.com/table.jpg", output)
+
+            self.assertEqual(image, output.read_bytes())
+            command = run.call_args.args[0]
+            self.assertIn("--fail", command)
+            self.assertIn("--referer", command)
+            self.assertNotIn("--insecure", command)
+
     def test_different_image_urls_never_share_a_local_path(self):
         self.assertTrue(
             hasattr(extract_images, "build_image_path"),

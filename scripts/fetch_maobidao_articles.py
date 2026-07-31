@@ -3,6 +3,8 @@ import datetime as dt
 import html
 import json
 import re
+import subprocess
+import urllib.error
 import urllib.request
 from html.parser import HTMLParser
 from pathlib import Path
@@ -69,6 +71,27 @@ def meta(page, prop):
     return html.unescape(match.group(1)) if match else ""
 
 
+def fetch_page_with_curl(url):
+    result = subprocess.run(
+        [
+            "curl",
+            "--fail",
+            "--location",
+            "--compressed",
+            "--silent",
+            "--show-error",
+            "--max-time",
+            "30",
+            "--user-agent",
+            UA,
+            url,
+        ],
+        check=True,
+        stdout=subprocess.PIPE,
+    )
+    return result.stdout.decode("utf-8", "ignore")
+
+
 def fetch_page(url):
     request = urllib.request.Request(
         url,
@@ -77,7 +100,15 @@ def fetch_page(url):
             "Accept-Encoding": "identity",
         },
     )
-    return urllib.request.urlopen(request, timeout=25).read().decode("utf-8", "ignore")
+    try:
+        page = urllib.request.urlopen(request, timeout=25).read().decode(
+            "utf-8", "ignore"
+        )
+    except urllib.error.URLError:
+        return fetch_page_with_curl(url)
+    if 'id="js_content"' not in page:
+        return fetch_page_with_curl(url)
+    return page
 
 
 def article_date(page):

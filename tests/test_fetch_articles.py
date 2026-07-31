@@ -1,12 +1,56 @@
 import tempfile
 import unittest
 import json
+import subprocess
+import urllib.error
 from pathlib import Path
+from unittest.mock import Mock, patch
 
 from scripts import fetch_maobidao_articles
 
 
 class FetchArticlesTest(unittest.TestCase):
+    def test_fetch_page_uses_verified_curl_fallback_after_url_error(self):
+        page = b'<meta property="og:title" content="article" />'
+        completed = subprocess.CompletedProcess([], 0, stdout=page)
+
+        with patch(
+            "scripts.fetch_maobidao_articles.urllib.request.urlopen",
+            side_effect=urllib.error.URLError("certificate failure"),
+        ), patch(
+            "scripts.fetch_maobidao_articles.subprocess.run",
+            return_value=completed,
+        ) as run:
+            fetched = fetch_maobidao_articles.fetch_page(
+                "https://mp.weixin.qq.com/s/example"
+            )
+
+        self.assertEqual(page.decode(), fetched)
+        command = run.call_args.args[0]
+        self.assertIn("--fail", command)
+        self.assertIn("--location", command)
+        self.assertNotIn("--insecure", command)
+
+    def test_fetch_page_retries_http_200_page_without_article_content(self):
+        verification_page = Mock()
+        verification_page.read.return_value = b"<html>verification required</html>"
+        article_page = b'<div id="js_content"><p>article</p></div>'
+        completed = subprocess.CompletedProcess([], 0, stdout=article_page)
+
+        with patch(
+            "scripts.fetch_maobidao_articles.urllib.request.urlopen",
+            return_value=verification_page,
+        ), patch(
+            "scripts.fetch_maobidao_articles.subprocess.run",
+            return_value=completed,
+        ) as run:
+            fetched = fetch_maobidao_articles.fetch_page(
+                "https://mp.weixin.qq.com/s/example"
+            )
+
+        self.assertEqual(article_page.decode(), fetched)
+        run.assert_called_once()
+
     def test_partial_fetch_never_replaces_complete_cached_article(self):
         self.assertTrue(
             hasattr(fetch_maobidao_articles, "choose_article_version"),
