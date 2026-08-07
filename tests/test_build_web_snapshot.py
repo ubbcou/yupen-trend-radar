@@ -10,31 +10,47 @@ class WebSnapshotTest(unittest.TestCase):
     def test_snapshot_uses_current_project_facts(self):
         snapshot = build_snapshot()
 
-        self.assertEqual("2026-07-31", snapshot["meta"]["article"]["date"])
-        self.assertEqual("2026-07-30", snapshot["meta"]["fishDataDates"]["index"])
-        self.assertEqual("2026-07-30", snapshot["meta"]["fishDataDates"]["sector"])
+        self.assertEqual("2026-08-07", snapshot["meta"]["article"]["date"])
+        self.assertEqual("2026-08-06", snapshot["meta"]["fishDataDates"]["index"])
+        self.assertEqual("2026-08-06", snapshot["meta"]["fishDataDates"]["sector"])
 
         groups = {group["name"]: group["directions"] for group in snapshot["groups"]}
         self.assertEqual(
-            ["中证消费", "国企指数", "中证红利"],
+            [],
             groups["主攻"],
         )
         self.assertEqual(
-            ["中证煤炭"],
+            ["微盘股", "有色金属", "细分化工"],
             groups["试探"],
         )
-        self.assertEqual(["恒生科技"], groups["趋势保持"])
+        self.assertEqual(["电网设备"], groups["趋势保持"])
         self.assertEqual(
-            ["房地产", "有色金属", "微盘股"],
+            [
+                "中证2000",
+                "商业航天",
+                "中证煤炭",
+                "北证50",
+                "中证1000",
+                "光伏设备",
+                "房地产",
+                "机器人",
+                "纳指100",
+                "中证红利",
+                "国企指数",
+                "新能源",
+                "中证消费",
+                "恒生科技",
+                "中证500",
+            ],
             groups["等待"],
         )
 
         directions = {row["name"]: row for row in snapshot["directions"]}
         innovation_drug = directions["CS创新药"]
-        self.assertEqual(9, innovation_drug["rank"])
-        self.assertEqual("2026-07-29", innovation_drug["previousDataDate"])
-        self.assertEqual(0, innovation_drug["rankMovement"])
-        self.assertEqual(0.97, innovation_drug["volumeRatio"])
+        self.assertEqual(12, innovation_drug["rank"])
+        self.assertEqual("2026-08-05", innovation_drug["previousDataDate"])
+        self.assertEqual(-1, innovation_drug["rankMovement"])
+        self.assertEqual(1.04, innovation_drug["volumeRatio"])
         self.assertEqual("中证A500", innovation_drug["benchmark"])
         self.assertEqual("回避", innovation_drug["group"])
         self.assertEqual("不纳入", innovation_drug["action"])
@@ -52,24 +68,24 @@ class WebSnapshotTest(unittest.TestCase):
                 "aboveMa20": False,
                 "strongerThanBenchmark": False,
                 "continuous": False,
-                "volumeConfirmed": False,
+                "volumeConfirmed": True,
             },
             innovation_drug["conditions"],
         )
         self.assertEqual("neutral", innovation_drug["articleStance"])
         self.assertEqual("", innovation_drug["articleEvidence"])
-        self.assertTrue(innovation_drug["sourceImage"].endswith("sector_162e7c1f.jpg"))
+        self.assertTrue(innovation_drug["sourceImage"].endswith("sector_9efb2ed1.jpg"))
         self.assertEqual("2026-06-29", innovation_drug["lifecycle"]["startDate"])
         self.assertEqual("2026-07-10", innovation_drug["lifecycle"]["mainDate"])
         self.assertEqual("2026-07-23", innovation_drug["lifecycle"]["endDate"])
         self.assertEqual("closed", innovation_drug["lifecycle"]["status"])
         self.assertEqual(
             [
-                {"date": "2026-07-24", "rank": 4, "group": "回避"},
-                {"date": "2026-07-27", "rank": 5, "group": "等待"},
-                {"date": "2026-07-28", "rank": 7, "group": "回避"},
-                {"date": "2026-07-29", "rank": 9, "group": "回避"},
-                {"date": "2026-07-30", "rank": 9, "group": "回避"},
+                {"date": "2026-07-31", "rank": 9, "group": "回避"},
+                {"date": "2026-08-03", "rank": 11, "group": "回避"},
+                {"date": "2026-08-04", "rank": 10, "group": "回避"},
+                {"date": "2026-08-05", "rank": 11, "group": "等待"},
+                {"date": "2026-08-06", "rank": 12, "group": "回避"},
             ],
             innovation_drug["history"],
         )
@@ -77,10 +93,10 @@ class WebSnapshotTest(unittest.TestCase):
     def test_snapshot_includes_display_context_without_article_body(self):
         snapshot = build_snapshot()
 
-        self.assertIn("主攻方向收缩为国企指数", snapshot["marketSummary"])
+        self.assertIn("当前主攻仍为空", snapshot["marketSummary"])
         directions = {row["name"]: row for row in snapshot["directions"]}
         self.assertIn("下一次鱼盆数据", directions["CS创新药"]["nextValidation"])
-        self.assertEqual("support", directions["半导体"]["articleStance"])
+        self.assertEqual("neutral", directions["半导体"]["articleStance"])
         self.assertEqual("回避", directions["半导体"]["group"])
         self.assertNotIn("text", snapshot["meta"]["article"])
 

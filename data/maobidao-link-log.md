@@ -1,11 +1,11 @@
 # 猫笔叨的读后感区链接状态
 
-更新时间：2026-07-31
+更新时间：2026-08-07
 
 ## 已纳入完整报告
 
-- 数量：69 篇
-- 范围：2026-01-01 至 2026-07-31
+- 数量：74 篇
+- 范围：2026-01-01 至 2026-08-07
 - 备注：2026-05-02 文章正文不可读，报告中只保留标题线索。
 
 - [x] 2026-01-01｜2025年结束了，说点心里话｜https://mp.weixin.qq.com/s/SD9I_6idAhlbl4OeLkai0g
@@ -77,6 +77,11 @@
 - [x] 2026-07-29｜有点惨，投了170万亏了166万…｜https://mp.weixin.qq.com/s/-b8Qwf4H2Vv9oQSf30xTuA
 - [x] 2026-07-30｜在人大叫嚣的张某某，估计现在后悔了吧…｜https://mp.weixin.qq.com/s/n09-xTOXcK6eqLDNMb4Kow
 - [x] 2026-07-31｜我的天，今天要吃口大的了…｜https://mp.weixin.qq.com/s/SJKBRuN_jTNuRV1bZ0mMwA
+- [x] 2026-08-03｜特朗普又开始“瞎说”了，但是好事…｜https://mp.weixin.qq.com/s/YjhKm5MeLOu3v8p1JlOnGg
+- [x] 2026-08-04｜天天账户扣钱，什么时候是个头啊[裂开][裂开]｜https://mp.weixin.qq.com/s/0her8y9aBII_tTi2rm_GNg
+- [x] 2026-08-05｜新制裁，怎么看…｜https://mp.weixin.qq.com/s/O-5KUbGav9Qccu6_YbnOKg
+- [x] 2026-08-06｜有点猛，黄金也大涨…｜https://mp.weixin.qq.com/s/B0sfYDtFisslUpGkGuZUug
+- [x] 2026-08-07｜大肉签，注意事项…｜https://mp.weixin.qq.com/s/M14Iw4X3rEkZyT_gdgyUCw
 
 ## 下次处理
 
