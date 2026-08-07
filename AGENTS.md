@@ -31,3 +31,5 @@
 6. 只有出现新规则或旧规则被证伪时，才更新鱼盆指南。
 7. 运行 `python3 scripts/validate_project.py`，校验 JSON、图片记录、结构化读表数据、派生数据、最新数据日和文档口径一致。
 8. 需要更新 Web 时运行 `python3 scripts/build_web_snapshot.py`；校验不通过时不得生成新快照。
+9. 新文章任务默认以发布闭环为完成条件：提交并推送 `main`，等待 GitHub Pages 部署结束，再运行 `python3 scripts/check_release_status.py`；只有输出 `PUBLISHED` 才能报告任务完成。
+10. 用户明确要求仅本地处理时可以不提交或推送，但必须运行发布状态检查并报告实际状态（如 `UNCOMMITTED` 或 `NOT_PUSHED`），不得表述为已发布。检查器输出 `INVALID`、`DEPLOY_FAILED`、`ONLINE_STALE` 或 `CHECK_FAILED` 时，必须报告对应缺口，不能声称完成。

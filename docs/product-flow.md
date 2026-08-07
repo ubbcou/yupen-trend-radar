@@ -54,6 +54,10 @@
 → 追加 docs/reading-report.md
 → 若方法论变化，更新 docs/yupen-guide.md
 → 校验通过后运行 scripts/build_web_snapshot.py 更新 Web 只读快照
+→ 提交并推送 main
+→ 等待 GitHub Pages 部署完成
+→ 运行 scripts/check_release_status.py 核对本地、远端、部署和线上快照
+→ 仅在状态为 PUBLISHED 时结束发布任务
 ```
 
 产出：
@@ -61,6 +65,21 @@
 - 当前方向雷达写入 `docs/action-board.md`
 - 历史分析写入 `docs/reading-report.md`
 - 方法规则写入 `docs/yupen-guide.md`
+
+发布状态由 `scripts/check_release_status.py` 推导：
+
+| 状态 | 含义 |
+|---|---|
+| `INVALID` | 项目数据校验失败 |
+| `UNCOMMITTED` | 本地更新尚未提交 |
+| `NOT_PUSHED` | 当前提交尚未同步到 `origin/main` |
+| `DEPLOYING` | 对应提交的 Pages 部署尚未完成 |
+| `DEPLOY_FAILED` | 对应提交的 Pages 部署失败 |
+| `ONLINE_STALE` | Pages 成功，但线上日期或部署提交与本地不一致 |
+| `PUBLISHED` | 本地、远端、Pages 和线上快照一致 |
+| `CHECK_FAILED` | 网络、GitHub CLI 或线上响应异常，无法证明发布状态 |
+
+新文章任务默认以 `PUBLISHED` 为完成条件。用户明确要求仅本地处理时可以停在其他状态，但必须明确报告状态，不能把本地校验通过表述为已经发布。
 
 ## 2. 趋势方向雷达
 

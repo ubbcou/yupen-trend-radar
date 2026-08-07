@@ -72,6 +72,7 @@ ETF或股票映射可以作为临时研究结果，但在产品规则正式调�
 | `data/signal-episodes.csv` | 方向信号的开始、主攻确认、结束和假突破记录 | `scripts/build_signal_lifecycle.py` 自动覆盖生成 |
 | `data/yupen-index-ranking.csv` | 指数历史排名序列 | `scripts/build_index_ranking.py` 自动覆盖生成 |
 | `scripts/build_web_snapshot.py` | 校验项目并生成 Web 只读快照和原图副本 | Web 开发、构建或发布前运行 |
+| `scripts/check_release_status.py` | 根据本地校验、Git、Pages 和线上快照推导发布状态 | 新文章发布收尾时运行 |
 | `web/` | 趋势方向雷达的只读界面 | 不写回数据，不定义业务阈值 |
 
 ## 标准更新流
@@ -92,7 +93,13 @@ ETF或股票映射可以作为临时研究结果，但在产品规则正式调�
 -> 必要时更新鱼盆指南
 -> 校验数据和文档一致性
 -> 生成 Web 只读快照
+-> 提交并推送 main
+-> 等待 GitHub Pages 部署
+-> 核对线上日期和部署提交
+-> 发布状态达到 PUBLISHED
 ```
+
+新文章任务默认以上线状态 `PUBLISHED` 为完成条件。用户明确要求仅本地处理时可以停在本地状态，但必须报告检查器给出的实际状态，不能把“本地校验通过”等同于“已发布”。
 
 ## 方向池语义
 

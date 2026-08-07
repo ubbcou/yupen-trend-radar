@@ -1,5 +1,6 @@
 import csv
 import json
+import os
 import re
 import shutil
 from pathlib import Path
@@ -184,6 +185,7 @@ def write_web_snapshot(
     root=PROJECT_ROOT,
     output_path=None,
     image_dir=None,
+    release_commit=None,
 ):
     root = Path(root)
     output_path = Path(output_path or root / "web/public/data/project-snapshot.json")
@@ -193,6 +195,9 @@ def write_web_snapshot(
 
     snapshot = build_snapshot(root)
     snapshot["meta"]["validationStatus"] = "passed"
+    snapshot["meta"]["release"] = {
+        "commit": release_commit or os.environ.get("BUILD_COMMIT", ""),
+    }
     image_dir.mkdir(parents=True, exist_ok=True)
     for direction in snapshot["directions"]:
         source = root / direction["sourceImage"]

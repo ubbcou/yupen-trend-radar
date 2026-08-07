@@ -110,10 +110,12 @@ class WebSnapshotTest(unittest.TestCase):
                 root=PROJECT_ROOT,
                 output_path=output_path,
                 image_dir=image_dir,
+                release_commit="22860fd",
             )
 
             written = json.loads(output_path.read_text(encoding="utf-8"))
             self.assertEqual("passed", written["meta"]["validationStatus"])
+            self.assertEqual("22860fd", written["meta"]["release"]["commit"])
             self.assertEqual(snapshot, written)
             for direction in written["directions"]:
                 self.assertTrue(direction["sourceImage"].startswith("/yupen-images/"))
